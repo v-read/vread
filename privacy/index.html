@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - V-Read</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --highlight: hsl(187, 85%, 45%);
+            --highlight-glow: hsl(187, 85%, 65%);
+            --bg: hsl(0, 0%, 98%);
+            --surface: hsl(0, 0%, 100%);
+            --text: hsl(0, 0%, 10%);
+            --text-muted: hsl(0, 0%, 40%);
+            --border: hsl(0, 0%, 90%);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --highlight: hsl(187, 85%, 55%);
+                --highlight-glow: hsl(187, 85%, 35%);
+                --bg: hsl(0, 0%, 5%);
+                --surface: hsl(0, 0%, 10%);
+                --text: hsl(0, 0%, 98%);
+                --text-muted: hsl(0, 0%, 60%);
+                --border: hsl(0, 0%, 20%);
+            }
+        }
+
+        [data-theme="light"] {
+            --highlight: hsl(187, 85%, 45%);
+            --highlight-glow: hsl(187, 85%, 65%);
+            --bg: hsl(0, 0%, 98%);
+            --surface: hsl(0, 0%, 100%);
+            --text: hsl(0, 0%, 10%);
+            --text-muted: hsl(0, 0%, 40%);
+            --border: hsl(0, 0%, 90%);
+        }
+
+        [data-theme="dark"] {
+            --highlight: hsl(187, 85%, 55%);
+            --highlight-glow: hsl(187, 85%, 35%);
+            --bg: hsl(0, 0%, 5%);
+            --surface: hsl(0, 0%, 10%);
+            --text: hsl(0, 0%, 98%);
+            --text-muted: hsl(0, 0%, 60%);
+            --border: hsl(0, 0%, 20%);
+        }
+
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            padding: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle button {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--highlight);
+            background: var(--surface);
+            color: var(--highlight);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle button:hover {
+            background: var(--highlight);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--highlight);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px hsla(187, 85%, 55%, 0.3);
+        }
+
+        h1 {
+            color: var(--text);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+
+        h2 {
+            color: var(--text);
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        strong {
+            color: var(--highlight);
+            font-weight: 600;
+        }
+
+        .contact {
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--bg);
+            border: 2px solid var(--highlight);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact a {
+            color: var(--highlight);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1.2em;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Toggle theme">
+            <svg id="sunIcon" style="display: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="5"/>
+                <path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            <svg id="moonIcon" style="display: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">V-Read</div>
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: December 30, 2025</p>
+        </div>
+
+        <h2>What We Collect</h2>
+        <ul>
+            <li><strong>Email Address & Name:</strong> Used solely for account authentication</li>
+            <li><strong>Reading Selections:</strong> Text fragments you mark for speed reading are stored locally on your device</li>
+            <li><strong>Reading Progress:</strong> Word count tracking stored locally to manage free tier limits</li>
+        </ul>
+
+        <h2>How the Extension Works</h2>
+        <ul>
+            <li>V-Read operates entirely within your browser</li>
+            <li>It accesses webpage text to enable you to select and mark reading fragments</li>
+            <li>Selected text fragments are stored locally on your device only</li>
+            <li>No webpage content is transmitted to external servers</li>
+        </ul>
+
+        <h2>What We Don't Collect or Transmit</h2>
+        <ul>
+            <li>We do NOT send webpage content to our servers</li>
+            <li>We do NOT track your browsing history</li>
+            <li>We do NOT collect location data</li>
+            <li>We do NOT share your data with third parties</li>
+            <li>We do NOT store your reading selections on our servers</li>
+        </ul>
+
+        <h2>Data Storage</h2>
+        <ul>
+            <li>Authentication credentials managed securely by Firebase Authentication</li>
+            <li>All reading fragments and progress stored locally in your browser</li>
+            <li>Data remains on your device and is not synchronized or backed up to cloud servers</li>
+        </ul>
+
+        <h2>Permissions Explained</h2>
+        <ul>
+            <li><strong>Read and change website data:</strong> Required to display the reading overlay and mark text on pages you visit</li>
+            <li><strong>Storage:</strong> Saves your preferences and reading fragments locally</li>
+            <li><strong>Identity:</strong> Used for email-based authentication only</li>
+        </ul>
+
+        <h2>Your Rights</h2>
+        <ul>
+            <li>Delete your account anytime</li>
+            <li>Clear all local data by uninstalling the extension</li>
+            <li>Your reading data stays on your device under your control</li>
+        </ul>
+
+        <h2>Changes to This Policy</h2>
+        <p>We may update this policy occasionally. Continued use of V-Read after changes constitutes acceptance of the updated policy.</p>
+
+        <div class="contact">
+            <p><strong>Questions about this privacy policy?</strong></p>
+            <p>Contact us at <a href="mailto:contact@vread.com.au">contact@vread.com.au</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Theme management
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        
+        // Get system preference
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Get saved theme or use system preference
+        let currentTheme = localStorage.getItem('vread-theme') || (systemPrefersDark ? 'dark' : 'light');
+        
+        // Apply initial theme
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateIcon();
+        
+        // Theme toggle handler
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            localStorage.setItem('vread-theme', currentTheme);
+            updateIcon();
+        });
+        
+        // Update icon based on theme
+        function updateIcon() {
+            if (currentTheme === 'dark') {
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            } else {
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            }
+        }
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            // Only auto-update if user hasn't manually set a preference
+            if (!localStorage.getItem('vread-theme')) {
+                currentTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', currentTheme);
+                updateIcon();
+            }
+        });
+    </script>
+</body>
+</html>
