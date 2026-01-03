@@ -118,6 +118,12 @@
             color: var(--highlight);
             margin-bottom: 10px;
             text-shadow: 0 0 20px hsla(187, 85%, 55%, 0.3);
+            cursor: pointer; 
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {  /* ADD THIS */
+            transform: scale(1.05);
         }
 
         h1 {
@@ -317,6 +323,12 @@
                 updateIcon();
             }
         });
+        
+        // Logo click handler
+        document.querySelector('.logo').addEventListener('click', () => {
+            window.location.href = 'https://vread.com.au';
+        });
+        
     </script>
 </body>
 </html>
