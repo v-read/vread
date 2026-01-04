@@ -15,6 +15,7 @@
             --highlight: hsl(187, 85%, 45%);
             --highlight-glow: hsl(187, 85%, 65%);
             --bg: hsl(0, 0%, 98%);
+            --bg-gradient: linear-gradient(135deg, hsl(0, 0%, 98%) 0%, hsl(187, 85%, 97%) 100%);
             --surface: hsl(0, 0%, 100%);
             --text: hsl(0, 0%, 10%);
             --text-muted: hsl(0, 0%, 40%);
@@ -26,6 +27,7 @@
                 --highlight: hsl(187, 85%, 55%);
                 --highlight-glow: hsl(187, 85%, 35%);
                 --bg: hsl(0, 0%, 5%);
+                --bg-gradient: linear-gradient(135deg, hsl(0, 0%, 5%) 0%, hsl(187, 85%, 8%) 100%);
                 --surface: hsl(0, 0%, 10%);
                 --text: hsl(0, 0%, 98%);
                 --text-muted: hsl(0, 0%, 60%);
@@ -37,6 +39,7 @@
             --highlight: hsl(187, 85%, 45%);
             --highlight-glow: hsl(187, 85%, 65%);
             --bg: hsl(0, 0%, 98%);
+            --bg-gradient: linear-gradient(135deg, hsl(0, 0%, 98%) 0%, hsl(187, 85%, 97%) 100%);
             --surface: hsl(0, 0%, 100%);
             --text: hsl(0, 0%, 10%);
             --text-muted: hsl(0, 0%, 40%);
@@ -47,6 +50,7 @@
             --highlight: hsl(187, 85%, 55%);
             --highlight-glow: hsl(187, 85%, 35%);
             --bg: hsl(0, 0%, 5%);
+            --bg-gradient: linear-gradient(135deg, hsl(0, 0%, 5%) 0%, hsl(187, 85%, 8%) 100%);
             --surface: hsl(0, 0%, 10%);
             --text: hsl(0, 0%, 98%);
             --text-muted: hsl(0, 0%, 60%);
@@ -55,15 +59,21 @@
 
         body {
             font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: var(--bg);
+            background: var(--bg-gradient);
             color: var(--text);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
             transition: background 0.3s, color 0.3s;
+        }
+
+        .hero-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         .theme-toggle {
@@ -71,6 +81,82 @@
             top: 30px;
             right: 30px;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .about-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95em;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .about-link:hover {
+            color: var(--highlight);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .hamburger span {
+            width: 20px;
+            height: 2px;
+            background: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .hamburger:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .hamburger:hover span {
+            background: var(--highlight);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 30px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            min-width: 180px;
+        }
+
+        .mobile-menu.show {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--border);
+            color: var(--highlight);
         }
 
         .theme-toggle button {
@@ -157,13 +243,49 @@
             transform: translateY(-2px);
         }
 
+        .about-section {
+            max-width: 800px;
+            margin: 200px auto 100px;
+            padding: 60px;
+            background: var(--surface);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        .about-section h2 {
+            font-size: 3em;
+            color: var(--text);
+            margin-bottom: 16px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .about-section h3 {
+            font-size: 1.5em;
+            color: var(--highlight);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .about-section p {
+            font-size: 1.15em;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .about-section p:first-of-type {
+            font-size: 1.25em;
+            color: var(--text);
+        }
+
         footer {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+            padding: 30px;
+            text-align: center;
             display: flex;
             gap: 30px;
+            justify-content: center;
             font-size: 0.9em;
         }
 
@@ -189,6 +311,14 @@
         }
 
         @media (max-width: 768px) {
+            .about-link {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             .logo {
                 font-size: 3em;
                 margin-bottom: 30px;
@@ -213,17 +343,43 @@
                 right: 20px;
             }
 
+            .mobile-menu {
+                top: 70px;
+                right: 20px;
+            }
+
+            .about-section {
+                margin: 120px auto 60px;
+                padding: 40px 30px;
+            }
+
+            .about-section h2 {
+                font-size: 2.2em;
+            }
+
+            .about-section h3 {
+                font-size: 1.2em;
+            }
+
+            .about-section p {
+                font-size: 1em;
+            }
+
             footer {
-                bottom: 20px;
                 flex-direction: column;
                 gap: 10px;
-                text-align: center;
             }
         }
     </style>
 </head>
 <body>
     <div class="theme-toggle">
+        <a href="#about" class="about-link">About</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <button id="themeToggle" aria-label="Toggle theme">
             <svg id="sunIcon" style="display: none;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                 <circle cx="12" cy="12" r="5"/>
@@ -235,12 +391,39 @@
         </button>
     </div>
 
-    <div class="container">
-        <div class="logo">V-Read</div>
-        <h1>Speed Read <span class="highlight">Anything</span> on the Web</h1>
-        <p class="subheadline">Select any text on any webpage and read at your own pace</p>
-        <a href="#" class="cta-button">Add to Chrome - It's Free</a>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="mailto:contact@vread.com.au">Contact</a>
     </div>
+
+    <div class="hero-section">
+        <div class="container">
+            <div class="logo">V-Read</div>
+            <h1>Speed Read <span class="highlight">Anything</span> on the Web</h1>
+            <p class="subheadline">Select any text on any webpage and read at your own pace</p>
+            <a href="#" class="cta-button">Add to Chrome - It's Free</a>
+        </div>
+    </div>
+
+    <section id="about" class="about-section">
+        <h2>About</h2>
+        <h3>Why I Built V-Read</h3>
+        <p>Hello!</p>
+        <p>I'm Mridul, the founder of V-read. I'm going to be honest, I've never been a huge fan of reading. Ironic for someone geeky enough to build a speed reading extension, I know.</p>
+        <p>If I'm feeling fiction then I'd opt for a movie or a show any day over digging into a book. If I'm feeling non-fiction… well, I never really felt non-fiction much 😂 but when I did I'd find something online.</p>
+        <p>I dreaded the slow and tedious pace at which I felt I was getting through it all, only to remember half of what I read in the first place. It sucked.</p>
+        <p>In year 12 I had to sit the exam called UCAT because it's been my lifelong dream to become a doctor. And for those who know, the most daunting, soul-sucking section - Verbal Reasoning - soon became my archenemies (as well as many of my friends').</p>
+        <p>I was determined. I knew that to stand a chance I would have to pay back this debt of avoiding reading since my childhood which resulted in a very, verryyy slow reading pace.</p>
+        <p>I tried all of the speed reading websites you can imagine, reading books with tape on the side for in-denting, reading on my kindle with a guitar pick to guide. To my demise, most of the speed reading trainers on UCAT tutoring platforms were very subpar.</p>
+        <p>That being said, I was able to improve drastically (even though I am FAR from perfect) and Verbal Reasoning ended up being my strongest subtest based on percentiles. However, I saw that I had a long way to go with getting better, and that the tools currently available are extremely tedious.</p>
+        <p>Nobody wants to force-feed themselves a book or slave away copy and pasting Wikipedia articles into a sketchy website to get better at reading.</p>
+        <p>Maybe you're not doing this for an exam or your profession, maybe you want to catch up in that series your friends can't stop yapping about but are also cursed with the all-so-humbling reading speed that hasn't moved since you were reading Geronimo Stilton as a kid.</p>
+        <p>That's exactly why I built V-read. Yes, the name is inspired by Verbal Reasoning but I suppose it can take any meaning you please… Virtual Reading? Velocity… reading? I'm getting carried away here.</p>
+        <p>You probably spend countless hours of your day randomly browsing websites or articles without realising it's a treasure trove to improve your reading speed without hating the process. V-read lets you do just that. No matter what website you are on, you can turn the extension on and simply select the fragments you'd like to speed read, set a speed and go.</p>
+        <p>Reading is such an important skill, and you'll be using it your whole life whether you love it or hate it. Maybe it's time you invested ($0, just your time) in improving it, without changing anything about your precious browse time.</p>
+        <p>Go on, download that bad boy.</p>
+    </section>
 
     <footer>
         <a href="/privacy">Privacy Policy</a>
@@ -248,22 +431,17 @@
     </footer>
 
     <script>
-        // Theme management - synced across all pages
+        // Theme management
         const themeToggle = document.getElementById('themeToggle');
         const sunIcon = document.getElementById('sunIcon');
         const moonIcon = document.getElementById('moonIcon');
         
-        // Get system preference
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Get saved theme or use system preference
         let currentTheme = localStorage.getItem('vread-theme') || (systemPrefersDark ? 'dark' : 'light');
         
-        // Apply initial theme
         document.documentElement.setAttribute('data-theme', currentTheme);
         updateIcon();
         
-        // Theme toggle handler
         themeToggle.addEventListener('click', () => {
             currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', currentTheme);
@@ -271,7 +449,6 @@
             updateIcon();
         });
         
-        // Update icon based on theme
         function updateIcon() {
             if (currentTheme === 'dark') {
                 sunIcon.style.display = 'block';
@@ -282,14 +459,34 @@
             }
         }
         
-        // Listen for system theme changes
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            // Only auto-update if user hasn't manually set a preference
             if (!localStorage.getItem('vread-theme')) {
                 currentTheme = e.matches ? 'dark' : 'light';
                 document.documentElement.setAttribute('data-theme', currentTheme);
                 updateIcon();
             }
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('show');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('show');
+            }
+        });
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('show');
+            });
         });
     </script>
 </body>
